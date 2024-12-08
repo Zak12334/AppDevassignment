@@ -1,0 +1,27 @@
+type Household {
+    eircode: ID!
+    numberOfOccupants: Int!
+    maximumOccupants: Int!
+    ownerOccupied: Boolean!
+    pets: [Pet]
+}
+
+type Pet {
+    id: ID!
+    name: String!
+    breed: String!
+    type: String!
+    age: Int!
+}
+
+type Query {
+    households: [Household]!
+    household(eircode: String!): Household
+}
+
+type Mutation {
+    createHousehold(eircode: String!, numberOfOccupants: Int!, maximumOccupants: Int!, ownerOccupied: Boolean!): Household!
+    createPet(name: String!, breed: String!, type: String!, age: Int!, householdEircode: String!): Pet!
+    deleteHousehold(eircode: String!): Boolean!
+    deletePet(id: ID!): Boolean!
+}
